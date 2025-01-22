@@ -67,6 +67,14 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/mountain.png
+    - assets/diary.png
+    - assets/adventure.png
+    - assets/profile.png
+    - assets/istanbul.jpg
+    - assets/paris.jpg
+    - assets/vienna.jpg
+    - assets/london.jpg
+    - assets/diary1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -86,6 +94,10 @@ flutter:
      - family: Aladin
        fonts:
          - asset: assets/Aladin-Regular.ttf
+     - family: Adamina
+       fonts:
+         - asset: assets/Adamina-Regular.ttf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

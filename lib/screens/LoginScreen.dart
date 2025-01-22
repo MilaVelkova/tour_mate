@@ -95,7 +95,12 @@ class _LoginScreen extends State<LoginScreen> {
                   children: [
                     // Sign In Button
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context,
+                            '/home'
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(31, 65, 187, 1), // Blue color
                         minimumSize: Size(double.infinity, 50),
