@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/ServiceItem.dart'; // Import the ServiceItem widget
+
 class PlaceDetailsScreen extends StatelessWidget {
   const PlaceDetailsScreen({super.key});
 
@@ -7,199 +9,150 @@ class PlaceDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
-      body: SafeArea(
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
+        elevation: 0,
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // New Diary
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                      context,
-                      '/newDiary'
-                  );
-                },
-                child: SizedBox(
-                  height: 110, // Increased card height
-                  child: Card(
-                    color: const Color.fromRGBO(255, 221, 221, 1), // Light yellow
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+            // Top Image Section
+            Stack(
+              children: [
+                Container(
+                  height: 350,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/paris.jpg'),
+                      fit: BoxFit.cover,
                     ),
-                    child: ListTile(
-                      subtitle: const Text(
-                        textAlign: TextAlign.center,
-                        'Place details..',
-                        style: TextStyle(fontSize: 22, color: Colors.black),
-                      ),
-                      leading: Image.asset(
-                        'assets/diary1.png', // Replace with your adventure image
-                        width: 60,
-                      ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
                     ),
                   ),
                 ),
+                Positioned(
+                  right: 20,
+                  bottom: 0,
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    onPressed: () {},
+                    child: const Icon(Icons.favorite_border, color: Colors.red),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            // Location and Title
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  const Icon(Icons.location_on, color: Colors.black),
+                  const SizedBox(width: 8),
+                  const Text(
+                    "France",
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 50),
-//
-//             // Search Bar
-//             Container(
-//               height: 50,
-//               decoration: BoxDecoration(
-//                 color: Colors.white,
-//                 borderRadius: BorderRadius.circular(30),
-//               ),
-//               child: Row(
-//                 children: [
-//                   const SizedBox(width: 16),
-//                   const Icon(Icons.search, color: Colors.black),
-//                   const SizedBox(width: 10),
-//                   Expanded(
-//                     child: TextField(
-//                       decoration: const InputDecoration(
-//                         border: InputBorder.none,
-//                         hintText: "Search",
-//                         hintStyle: TextStyle(color: Colors.black45),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             const SizedBox(height: 30),
-//
-//             // Recents
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: const [
-//                 Text(
-//                   "Recents",
-//                   style: TextStyle(
-//                     fontFamily: 'Adamina',
-//                     fontSize: 30,
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.black,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//             const SizedBox(height: 40),
-//
-//             // Paris
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 40.0),
-//               child: InkWell(
-//                 onTap: () {
-//                   Navigator.pushNamed(
-//                       context,
-//                       '/diaryDetails'
-//                   );
-//                 },
-//                 child: SizedBox(
-//                   height: 80, // Increased card height
-//                   child: Card(
-//                     color: const Color.fromRGBO(228, 255, 221, 1), // Light yellow
-//                     shape: RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                     ),
-//                     child: ListTile(
-//                       leading: Image.asset(
-//                         'assets/paris.jpg', // Replace with your adventure image
-//                         width: 100,
-//                       ),
-//                       title: const Text(
-//                         'PARIS, 2023',
-//                         textAlign: TextAlign.center,
-//                         style: TextStyle(
-//                           fontFamily: 'Adamina',
-//                           fontWeight: FontWeight.bold,
-//                           fontSize: 24,
-//                           color: Colors.black,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             const SizedBox(height: 50),
-//
-//             // Istanbul
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 40.0),
-//               // child: InkWell(
-//               //   onTap: () {
-//               //     Navigator.pushNamed(
-//               //         context,
-//               //         '/diary'
-//               //     );
-//               //   },
-//                 child: SizedBox(
-//                   height: 80, // Increased card height
-//                   child: Card(
-//                     color:const Color.fromRGBO(171, 234, 211, 1), // Light pink
-//                     shape: RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                     ),
-//                     child: ListTile(
-//                       leading: Image.asset(
-//                         'assets/istanbul.jpg', // Replace with your diary image
-//                         width: 60,
-//                       ),
-//                       title: const Text(
-//                         'ISTANBUL, 2024',
-//                         style: TextStyle(
-//                           fontFamily: 'Adamina',
-//                           fontWeight: FontWeight.bold,
-//                           fontSize: 24,
-//                           color: Colors.black,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             // ),
-//             const SizedBox(height: 50),
-//
-//             // Photo & Video Card
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 40.0),
-//               child: SizedBox(
-//                 height: 110, // Increased card height
-//                 child: Card(
-//                   color: const Color.fromRGBO(192, 244, 239, 1), // Light blue
-//                   shape: RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.circular(15),
-//                   ),
-//                   child: ListTile(
-//                     leading: Image.asset(
-//                       'assets/diary.png', // Replace with your photo & video image
-//                       width: 40,
-//                     ),
-//                     title: const Text(
-//                       'Photo & video',
-//                       style: TextStyle(
-//                         fontWeight: FontWeight.bold,
-//                         fontSize: 24,
-//                         color: Colors.black,
-//                       ),
-//                     ),
-//                     subtitle: const Text(
-//                       'Post all pictures and video from your adventure',
-//                       style: TextStyle(fontSize: 18, color: Colors.black),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ),
-           ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: const Text(
+                "Paris",
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+              child: const Text(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae sapien viverra laoreet fusce cras nibh.",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+            const SizedBox(height: 16),
+            // Reviews and Info
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Row(
+                    children: const [
+                      Icon(Icons.star, color: Colors.yellow, size: 24),
+                      SizedBox(width: 8),
+                      Text("4.0"),
+                    ],
+                  ),
+                  const SizedBox(width: 32),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    icon: const Icon(Icons.rate_review),
+                    label: const Text("Read Reviews"),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: const [
+                      Icon(Icons.directions_car, color: Colors.black, size: 20),
+                      SizedBox(width: 4),
+                      Text("30 min by car"),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            // Services Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: const Text(
+                "Services in Paris",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            // Service List
+            Column(
+              children: [
+                ServiceItem(
+                  title: "Carrete Cafe",
+                  subtitle: "Trocadero, Paris, France",
+                  imagePath: "assets/carrete.jpg", // Local asset image
+                  label: "Restaurant",
+                  labelColor: Colors.orange.shade100,
+                  labelIcon: Icons.restaurant,
+                ),
+                ServiceItem(
+                  title: "Disneyland Park",
+                  subtitle: "Bd de Parc, Paris, France",
+                  imagePath: "assets/disneyland.jpg", // Local asset image
+                  label: "Park",
+                  labelColor: Colors.green.shade100,
+                  labelIcon: Icons.park,
+                ),
+              ],
+            )
+          ],
         ),
-       ),
-     );
-   }
- }
-
+      ),
+    );
+  }
+}
