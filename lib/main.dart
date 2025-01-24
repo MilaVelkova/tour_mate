@@ -10,6 +10,8 @@ import 'package:tour_mate/screens/NewDiaryScreen.dart';
 import 'package:tour_mate/screens/PlaceDetailsScreen.dart';
 import 'package:tour_mate/screens/SelectPhotoScreen.dart';
 import 'package:tour_mate/screens/SplashScreen.dart';
+import 'package:tour_mate/screens/TourGuideDetailsScreen.dart';
+import 'package:tour_mate/screens/TourGuideScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +39,9 @@ class MyApp extends StatelessWidget {
         "/diaryDetails": (context) => const DiaryDetailsScreen(),
         "/newDiary": (context) => const NewDiaryScreen(),
         "/selectPhoto": (context) => const SelectPhotoScreen(),
-        "/camera": (context) => const CameraScreen(),
+         "/camera": (context) => const CameraScreen(),
+        "/tourGuide": (context) => const TourGuideScreen(),
+        "/tourDetails": (context) => const TourGuideDetailsScreen(),
       },
     );
   }

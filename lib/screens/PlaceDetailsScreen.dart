@@ -128,7 +128,7 @@ class PlaceDetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 15),
             // Service List
             Column(
               children: [

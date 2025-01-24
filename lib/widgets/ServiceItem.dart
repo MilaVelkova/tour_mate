@@ -24,7 +24,7 @@ class ServiceItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
       child: Row(
         children: [
           // Left-side image
@@ -37,7 +37,7 @@ class ServiceItem extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 18),
           // Title and subtitle
           Expanded(
             child: Column(
@@ -86,23 +86,24 @@ class ServiceItem extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 8),
-              IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MapScreen(),
-                    ),
-                  );
-                },
-                icon: const Icon(
-                  Icons.map,
-                  color: Colors.white,
-                ),
-                tooltip: 'View on Map',
-              ),
+              const SizedBox(height: 20),
+
             ],
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MapScreen(),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.location_on,
+              color: Colors.black,
+            ),
+            tooltip: 'View on Map',
           ),
         ],
       ),

@@ -95,6 +95,10 @@ flutter:
     - assets/camera.png
     - assets/disneyland.jpg
     - assets/carrete.jpg
+    - assets/peter.png
+    - assets/ella.png
+    - assets/tom.png
+    - assets/diana.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

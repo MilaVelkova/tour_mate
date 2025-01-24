@@ -94,34 +94,41 @@ class HomeScreen extends StatelessWidget {
                     color:const Color.fromRGBO(255, 233, 224, 1), // Light pink
                   shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
-      ),
-                child: ListTile(
-                  leading: Image.asset(
-                    'assets/diary.png', // Replace with your diary image
-                    width: 60,
-                  ),
-                  title: const Text(
-                    'Diary',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                                    color: Colors.black,
-                                  ),
-                      ),
-                      subtitle: const Text(
-                        'Write all your experience',
-                        style: TextStyle(fontSize: 18, color: Colors.black,),
-                      ),
+              ),
+                        child: ListTile(
+                          leading: Image.asset(
+                            'assets/diary.png', // Replace with your diary image
+                            width: 60,
+                          ),
+                          title: const Text(
+                            'Diary',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                                            color: Colors.black,
+                                          ),
+                              ),
+                              subtitle: const Text(
+                                'Write all your experience',
+                                style: TextStyle(fontSize: 18, color: Colors.black,),
+                              ),
+                            ),
                     ),
-            ),
-           ),
-          ),
-        ),
+                   ),
+                  ),
+                ),
                 const SizedBox(height: 50),
 
-                // Photo & Video Card
+                // Tour Guide
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context,
+                          '/tourGuide'
+                      );
+                    },
                   child: SizedBox(
                     height: 110, // Increased card height
                     child: Card(
@@ -131,11 +138,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: ListTile(
                         leading: Image.asset(
-                          'assets/diary.png', // Replace with your photo & video image
-                          width: 40,
+                          'assets/guide.png', // Replace with your photo & video image
+                          width: 70,
                         ),
                         title: const Text(
-                          'Photo & video',
+                          'Tour Guide',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
@@ -143,15 +150,16 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         subtitle: const Text(
-                          'Post all pictures and video from your adventure',
+                          'Let Tour guides navigate for you',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ],
           ),
+      ],
+          )
         ),
     );
   }
