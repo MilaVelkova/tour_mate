@@ -59,8 +59,6 @@ class AdventureScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-
-
             // Search Bar
             Container(
               height: 50,

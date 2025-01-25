@@ -37,6 +37,7 @@ dependencies:
   camera: ^0.11.1
   path_provider: ^2.1.5
   path: ^1.9.0
+  google_maps_flutter: ^2.10.0
 
 dev_dependencies:
   flutter_test:
@@ -99,6 +100,7 @@ flutter:
     - assets/ella.png
     - assets/tom.png
     - assets/diana.png
+    - assets/guide.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

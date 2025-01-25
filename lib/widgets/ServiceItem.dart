@@ -95,7 +95,7 @@ class ServiceItem extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const MapScreen(),
+                  builder: (context) => const MapScreen(latitude: 41, longitude: 21,),
                 ),
               );
             },
