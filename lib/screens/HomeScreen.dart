@@ -6,7 +6,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
         body: SafeArea(
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               // Profile Picture
               CircleAvatar(
                 radius: 40,
-                backgroundImage: AssetImage('assets/profile.png'), // Replace with your profile image
+                backgroundImage: AssetImage('assets/profile.png'),
               ),
             ],
           ),
@@ -48,15 +48,15 @@ class HomeScreen extends StatelessWidget {
               );
             },
           child: SizedBox(
-            height: 110, // Increased card height
+            height: 110,
             child: Card(
-              color: const Color.fromRGBO(254, 246, 218, 1), // Light yellow
+              color: const Color.fromRGBO(254, 246, 218, 1),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
               child: ListTile(
                 leading: Image.asset(
-                  'assets/adventure.png', // Replace with your adventure image
+                  'assets/adventure.png',
                   width: 60,
                 ),
                 title: const Text(
@@ -87,36 +87,36 @@ class HomeScreen extends StatelessWidget {
                   context,
                   '/diaryList'
               );
-            },
-                    child: SizedBox(
-                    height: 110, // Increased card height
-                    child: Card(
-                    color:const Color.fromRGBO(255, 233, 224, 1), // Light pink
-                  shape: RoundedRectangleBorder(
+              },
+            child: SizedBox(
+              height: 110,
+              child: Card(
+                color:const Color.fromRGBO(255, 233, 224, 1),
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
-              ),
-                        child: ListTile(
-                          leading: Image.asset(
-                            'assets/diary.png', // Replace with your diary image
-                            width: 60,
-                          ),
-                          title: const Text(
-                            'Diary',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                                            color: Colors.black,
-                                          ),
-                              ),
-                              subtitle: const Text(
-                                'Write all your experience',
-                                style: TextStyle(fontSize: 18, color: Colors.black,),
-                              ),
-                            ),
+                ),
+                child: ListTile(
+                  leading: Image.asset(
+                    'assets/diary.png',
+                    width: 60,
+                  ),
+                  title: const Text(
+                    'Diary',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: Colors.black,
                     ),
-                   ),
+                  ),
+                  subtitle: const Text(
+                    'Write all your experience',
+                    style: TextStyle(fontSize: 18, color: Colors.black,),
                   ),
                 ),
+              ),
+            ),
+          ),
+        ),
                 const SizedBox(height: 50),
 
                 // Tour Guide
@@ -130,15 +130,15 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                   child: SizedBox(
-                    height: 110, // Increased card height
+                    height: 110,
                     child: Card(
-                      color: const Color.fromRGBO(192, 244, 239, 1), // Light blue
+                      color: const Color.fromRGBO(192, 244, 239, 1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: ListTile(
                         leading: Image.asset(
-                          'assets/guide.png', // Replace with your photo & video image
+                          'assets/guide.png',
                           width: 70,
                         ),
                         title: const Text(

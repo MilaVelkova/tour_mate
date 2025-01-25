@@ -7,7 +7,7 @@ class SelectPhotoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+      backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
         elevation: 0,
@@ -23,9 +23,10 @@ class SelectPhotoScreen extends StatelessWidget {
           const Expanded(
             child: Padding(
               padding: EdgeInsets.all(8.0),
-              child: BuildGridItem(), // Use the custom widget here
+              child: BuildGridItem(),
             ),
           ),
+
           // Buttons Row at the Bottom
           Padding(
             padding: const EdgeInsets.all(16.0),

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-
 import '../screens/MapScreen.dart';
- // Import the MapScreen for navigation
+
 
 class ServiceItem extends StatelessWidget {
   final String title;
   final String subtitle;
   final String imagePath;
-  final String label; // Label for the right side (e.g., "Restaurant" or "Park")
-  final Color labelColor; // Background color for the label
-  final IconData labelIcon; // Icon for the label
+  final String label;
+  final Color labelColor;
+  final IconData labelIcon;
 
   const ServiceItem({
     super.key,
@@ -38,6 +37,7 @@ class ServiceItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 18),
+
           // Title and subtitle
           Expanded(
             child: Column(
@@ -57,6 +57,7 @@ class ServiceItem extends StatelessWidget {
               ],
             ),
           ),
+
           // Right-side label with icon and map button
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,

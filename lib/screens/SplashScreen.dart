@@ -5,19 +5,20 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: double.infinity, // Ensures the container takes the full screen height
-        width: double.infinity,  // Ensures the container takes the full screen width
+        height: double.infinity,
+        width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/mountain.png'), // Path to your image
-            fit: BoxFit.cover, // Makes the image cover the entire screen
+            image: AssetImage('assets/mountain.png'),
+            fit: BoxFit.cover,
           ),
         ),
+        //Title
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Positions text at the top and buttons at the bottom
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 50), // Add some padding at the top
+              padding: const EdgeInsets.only(top: 50),
               child: Column(
                 children: [
                   Text(
@@ -48,8 +49,10 @@ class SplashScreen extends StatelessWidget {
                 ],
               ),
             ),
+
+            //Buttons
             Padding(
-              padding: const EdgeInsets.only(bottom: 50), // Add padding to the bottom
+              padding: const EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   ElevatedButton(
@@ -60,7 +63,7 @@ class SplashScreen extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF3AB6A2), // Teal color for the button
+                      backgroundColor: Color.fromRGBO(5, 191, 171, 1),
                       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -68,7 +71,7 @@ class SplashScreen extends StatelessWidget {
                     ),
                     child: Text(
                       "Log In",
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18,color: Colors.white),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -80,7 +83,7 @@ class SplashScreen extends StatelessWidget {
                         );
                       },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFF19C65), // Orange color for the button
+                      backgroundColor: Color.fromRGBO(238, 139, 82, 1),
                       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -88,7 +91,7 @@ class SplashScreen extends StatelessWidget {
                     ),
                     child: Text(
                       "Create an account",
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
                 ],

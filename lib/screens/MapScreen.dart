@@ -27,7 +27,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Exam Location on Map'),
+        title: const Text('Location'),
       ),
       body: GoogleMap(
         onMapCreated: _onMapCreated,
@@ -39,7 +39,7 @@ class _MapScreenState extends State<MapScreen> {
           Marker(
             markerId: const MarkerId('exam_location'),
             position: _location,
-            infoWindow: const InfoWindow(title: 'Exam Location'),
+            infoWindow: const InfoWindow(title: 'Your Location'),
           ),
         },
       ),

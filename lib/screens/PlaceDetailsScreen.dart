@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../main.dart';
 import '../providers/FavoritePlacesProvider.dart';
 import '../widgets/ServiceItem.dart';
 
@@ -11,7 +9,7 @@ class PlaceDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+      backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
         elevation: 0,
@@ -59,7 +57,8 @@ class PlaceDetailsScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            // Location and Title
+
+            // Location
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
@@ -84,14 +83,18 @@ class PlaceDetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            //Text
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: const Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae sapien viverra laoreet fusce cras nibh.",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+                    "Vitae sapien viverra laoreet fusce cras nibh.",
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             ),
             const SizedBox(height: 16),
+
             // Reviews and Info
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -129,6 +132,7 @@ class PlaceDetailsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+
             // Services Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -142,13 +146,14 @@ class PlaceDetailsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 15),
+
             // Service List
             Column(
               children: [
                 ServiceItem(
                   title: "Carrete Cafe",
                   subtitle: "Trocadero, Paris, France",
-                  imagePath: "assets/carrete.jpg", // Local asset image
+                  imagePath: "assets/carrete.jpg",
                   label: "Restaurant",
                   labelColor: Colors.orange.shade100,
                   labelIcon: Icons.restaurant,
@@ -156,7 +161,7 @@ class PlaceDetailsScreen extends StatelessWidget {
                 ServiceItem(
                   title: "Disneyland Park",
                   subtitle: "Bd de Parc, Paris, France",
-                  imagePath: "assets/disneyland.jpg", // Local asset image
+                  imagePath: "assets/disneyland.jpg",
                   label: "Park",
                   labelColor: Colors.green.shade100,
                   labelIcon: Icons.park,

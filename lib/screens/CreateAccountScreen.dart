@@ -16,7 +16,7 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/mountain.png'), // Path to your image
+            image: AssetImage('assets/mountain.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -83,7 +83,7 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
                         fillColor: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 30), // Increased space between Password and Confirm Password
+                    SizedBox(height: 30),
 
                     // Confirm Password TextField
                     TextField(

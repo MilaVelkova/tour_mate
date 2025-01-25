@@ -16,7 +16,7 @@ class _LoginScreen extends State<LoginScreen> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/mountain.png'), // Path to your image
+            image: AssetImage('assets/mountain.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -102,7 +102,7 @@ class _LoginScreen extends State<LoginScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(31, 65, 187, 1), // Blue color
+                        backgroundColor: Color.fromRGBO(31, 65, 187, 1),
                         minimumSize: Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

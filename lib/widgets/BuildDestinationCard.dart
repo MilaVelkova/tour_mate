@@ -15,7 +15,7 @@ class BuildDestinationCard extends StatelessWidget{
     return Stack(
       children: [
         Card(
-          color: const Color(0xFF98EBE0), // Set card background color
+          color: const Color(0xFF98EBE0),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           elevation: 4,
           child: Column(
@@ -59,7 +59,7 @@ class BuildDestinationCard extends StatelessWidget{
           ),
         ),
 
-        // Red Heart in the Top Right
+        // Red Heart
         Positioned(
           top: 110,
           right: 8,
@@ -76,15 +76,13 @@ class BuildDestinationCard extends StatelessWidget{
               ],
             ),
             padding: const EdgeInsets.all(8),
-         child: Icon(
+            child: Icon(
             isFavorite ? Icons.favorite : Icons.favorite_border,
               color: isFavorite ? Colors.red : Colors.grey,
-         ),
-    ),
+            ),
+          ),
         ),
       ],
     );
   }
-
-
 }

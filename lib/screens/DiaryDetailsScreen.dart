@@ -6,14 +6,14 @@ class DiaryDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+      backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Match background color
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
         elevation: 0, // Remove shadow
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black), // Back arrow
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context); // Go back to the previous screen
+            Navigator.pop(context);
           },
         ),
       ),
@@ -21,7 +21,7 @@ class DiaryDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // New Diary
+            // Diary Title
             Padding(
               padding: const EdgeInsets.only(top: 0, left: 40),
               child: Column(
@@ -44,15 +44,15 @@ class DiaryDetailsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: SizedBox(
-                   height: 60, // Increased card height
+                   height: 60,
                   child: Card(
-                    color: const Color.fromRGBO(228, 255, 221, 1), // Light yellow
+                    color: const Color.fromRGBO(228, 255, 221, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: ListTile(
                       leading: Image.asset(
-                        'assets/calendar.png', // Replace with your adventure image
+                        'assets/calendar.png',
                         width: 40,
                       ),
                       title: const Text(
@@ -74,9 +74,9 @@ class DiaryDetailsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: SizedBox(
-                height: 60, // Increased card height
+                height: 60,
                 child: Card(
-                  color: const Color.fromRGBO(255, 233, 224, 1), // Light yellow
+                  color: const Color.fromRGBO(255, 233, 224, 1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -96,18 +96,17 @@ class DiaryDetailsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 30),
 
+          // Text
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Diary Entry Section with Lines
                 Stack(
                   children: [
-                    // Draw lines
                     Column(
                       children: List.generate(
-                        7, // Number of lines (based on the text rows)
+                        7,
                             (index) => Padding(
                           padding: const EdgeInsets.only(bottom: 40.0),
                           child: Container(
@@ -120,12 +119,15 @@ class DiaryDetailsScreen extends StatelessWidget {
                     ),
                     // Diary Text
                     const Text(
-                      "Dear diary, today I was on the Eiffel Tower. It was an amazing adventure. I was on the top of\n the tower with a lift. The view \nwas unforgettable. There are some\n pictures I took.",
+                      "Dear diary, today I was on the Eiffel Tower. "
+                          "It was an amazing adventure. I was on the top of\n the tower with "
+                          "a lift. The view \nwas unforgettable. There are some\n pictures I "
+                          "took.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,
                         color: Colors.black,
-                        height: 1.8, // Line height
+                        height: 1.8,
                       ),
                     ),
                   ],
@@ -140,31 +142,32 @@ class DiaryDetailsScreen extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
-                        'assets/eiffel_tower.jpg', // Replace with your image asset
+                        'assets/eiffel_tower.jpg',
                         height: 150,
                         width: 150,
                         fit: BoxFit.cover,
                       ),
                     ),
+
                     // Second Image
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
-                        'assets/view.jpg', // Replace with your image asset
+                        'assets/view.jpg',
                         height: 150,
                         width: 150,
                         fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-      ],
+          ],
         )
-        ),
-        );
+      ),
+    );
   }
 }
 

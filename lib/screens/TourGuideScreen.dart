@@ -9,12 +9,12 @@ class TourGuideScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Match background color
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
         elevation: 0, // Remove shadow
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black), // Back arrow
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context); // Go back to the previous screen
+            Navigator.pop(context);
           },
         ),
       ),
@@ -38,7 +38,9 @@ class TourGuideScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20), // Gap after the title
+                  const SizedBox(height: 20),
+
+                  //Cads
                   TourGuideCard(
                     name: "Peter Williams",
                     age: 26,
@@ -46,7 +48,7 @@ class TourGuideScreen extends StatelessWidget {
                     quote: "Collect memories, not things.",
                     avatar: "assets/peter.png",
                     quoteBackgroundColor: Color.fromRGBO(228, 255, 221, 1),
-                    isQuoteOnLeft: false, // Card then Quote
+                    isQuoteOnLeft: false,
                     onPressed: () {
                       Navigator.pushNamed(
                           context,
@@ -54,7 +56,8 @@ class TourGuideScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  const SizedBox(height: 30), // Gap between rows
+                  const SizedBox(height: 30),
+
                   TourGuideCard(
                     name: "Ella Marshall",
                     age: 23,
@@ -62,9 +65,10 @@ class TourGuideScreen extends StatelessWidget {
                     quote: "Go where you feel most alive.",
                     avatar: "assets/ella.png",
                     quoteBackgroundColor: Color.fromRGBO(177, 222, 254, 1),
-                    isQuoteOnLeft: true, // Quote then Card
+                    isQuoteOnLeft: true,
                   ),
-                  const SizedBox(height: 30), // Gap between rows
+                  const SizedBox(height: 30),
+
                   TourGuideCard(
                     name: "Tom Walker",
                     age: 21,
@@ -72,9 +76,10 @@ class TourGuideScreen extends StatelessWidget {
                     quote: "Explore. Dream. Discover.",
                     avatar: "assets/tom.png",
                     quoteBackgroundColor: Color.fromRGBO(255, 126, 126, 1),
-                    isQuoteOnLeft: false, // Card then Quote
+                    isQuoteOnLeft: false,
                   ),
-                  const SizedBox(height: 30), // Gap between rows
+                  const SizedBox(height: 30),
+
                   TourGuideCard(
                     name: "Diana Craft",
                     age: 29,
@@ -82,7 +87,7 @@ class TourGuideScreen extends StatelessWidget {
                     quote: "Adventure is worthwhile.",
                     avatar: "assets/diana.png",
                     quoteBackgroundColor: Color.fromRGBO(171, 234, 211, 1),
-                    isQuoteOnLeft: true, // Quote then Card
+                    isQuoteOnLeft: true,
                   ),
                 ],
               ),

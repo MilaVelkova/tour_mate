@@ -21,7 +21,7 @@ class DiaryCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: SizedBox(
-          height: 80, // Card height
+          height: 80,
           child: Card(
             color: backgroundColor,
             shape: RoundedRectangleBorder(
@@ -35,8 +35,8 @@ class DiaryCard extends StatelessWidget {
                     bottomLeft: Radius.circular(15),
                   ),
                   child: Image.asset(
-                    imagePath, // Diary image
-                    width: 80, // Match card height
+                    imagePath,
+                    width: 80,
                     height: double.infinity,
                     fit: BoxFit.cover,
                   ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tour_mate/widgets/BuildModelItem.dart';// Import the new widget
+import 'package:tour_mate/widgets/BuildModelItem.dart';
 
 class CameraScreen extends StatelessWidget {
   const CameraScreen({super.key});
@@ -14,16 +14,14 @@ class CameraScreen extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                // Placeholder for camera preview
                 Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/sea.jpg'), // Example background image
+                      image: AssetImage('assets/sea.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                // Focus frame in the center
                 Align(
                   alignment: Alignment.center,
                   child: Container(
@@ -46,7 +44,6 @@ class CameraScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Column(
               children: [
-                // Mode Selector
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const [
@@ -62,7 +59,6 @@ class CameraScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    // Thumbnail
                     CircleAvatar(
                       radius: 30,
                       backgroundImage: const AssetImage('assets/camera.png'), // Thumbnail Image

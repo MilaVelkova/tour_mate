@@ -16,7 +16,6 @@ class TourGuideDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header with Back Button
               Row(
                 children: [
                   IconButton(
@@ -69,7 +68,10 @@ class TourGuideDetailsScreen extends StatelessWidget {
                         const SizedBox(height: 16),
                         const Text(
                           textAlign: TextAlign.center,
-                          "Energetic and resourceful Tour Guide with several years of experience accompanying clients on trips and to various locations in different parts of the world. Adept at performing research in an effort to make optimal travel plans. Experienced in organizing itineraries according to time frames, weather, and events. Dedicated to providing clients with the best customer service and travel experience possible.",
+                          "Energetic and resourceful Tour Guide with several years of experience "
+                              "accompanying clients on trips and to various locations in different parts of the world. Adept at performing "
+                              "research in an effort to make optimal travel plans. Experienced in organizing itineraries according to time frames, weather, and events. Dedicated to "
+                              "providing clients with the best customer service and travel experience possible.",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black87,
@@ -78,13 +80,12 @@ class TourGuideDetailsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  const SizedBox(width: 16), // Gap between left and right sections
+                  const SizedBox(width: 16),
 
                   // Right Side: Profile Picture
                   const CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage("assets/peter.png"), // Add profile image
+                    backgroundImage: AssetImage("assets/peter.png"),
                   ),
                 ],
               ),
@@ -126,8 +127,7 @@ class TourGuideDetailsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  const SizedBox(width: 16), // Gap between left and right sections
+                  const SizedBox(width: 16),
 
                   // Right Side: Languages and Contact Info
                   Expanded(

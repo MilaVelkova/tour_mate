@@ -9,14 +9,14 @@ class DiaryListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+      backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Match background color
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
         elevation: 0, // Remove shadow
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black), // Back arrow
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context); // Go back to the previous screen
+            Navigator.pop(context);
           },
         ),
       ),
@@ -32,9 +32,9 @@ class DiaryListScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/newDiary');
                 },
                 child: SizedBox(
-                  height: 110, // Increased card height
+                  height: 110,
                   child: Card(
-                    color: const Color.fromRGBO(255, 221, 221, 1), // Light yellow
+                    color: const Color.fromRGBO(255, 221, 221, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -46,8 +46,8 @@ class DiaryListScreen extends StatelessWidget {
                             bottomLeft: Radius.circular(15),
                           ),
                           child: Image.asset(
-                            'assets/diary1.png', // Replace with your diary image
-                            width: 110, // Match card height
+                            'assets/diary1.png',
+                            width: 110,
                             height: double.infinity,
                             fit: BoxFit.cover,
                           ),
@@ -95,11 +95,11 @@ class DiaryListScreen extends StatelessWidget {
             ),
             const SizedBox(height: 40),
 
-            // Recents
+            // Recent
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.0),
               child: Text(
-                "Recents",
+                "Recent",
                 style: TextStyle(
                   fontFamily: 'Adamina',
                   fontSize: 30,

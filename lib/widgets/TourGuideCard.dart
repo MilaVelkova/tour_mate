@@ -8,7 +8,7 @@ class TourGuideCard extends StatelessWidget {
   final String avatar;
   final Color quoteBackgroundColor;
   final bool isQuoteOnLeft;
-  final VoidCallback? onPressed; // Add onPressed callback
+  final VoidCallback? onPressed;
 
   const TourGuideCard({
     super.key,
@@ -19,15 +19,15 @@ class TourGuideCard extends StatelessWidget {
     required this.avatar,
     required this.quoteBackgroundColor,
     this.isQuoteOnLeft = false,
-    this.onPressed, // Initialize onPressed
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onPressed, // Make the card clickable
+      onTap: onPressed,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 16), // Gap between rows
+        margin: const EdgeInsets.only(bottom: 16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: isQuoteOnLeft
@@ -54,6 +54,7 @@ class TourGuideCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
+
             // Avatar and Info
             Expanded(
               flex: 2,
@@ -161,6 +162,7 @@ class TourGuideCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
+
             // Quote Section
             Expanded(
               flex: 1,

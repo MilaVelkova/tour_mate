@@ -6,14 +6,14 @@ class NewDiaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+      backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Match background color
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
         elevation: 0, // Remove shadow
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black), // Back arrow
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context); // Go back to the previous screen
+            Navigator.pop(context);
           },
         ),
       ),
@@ -21,7 +21,7 @@ class NewDiaryScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // New Diary
+              //  Diary Title
               Padding(
                 padding: const EdgeInsets.only(top: 0, left: 40),
                 child: Column(
@@ -44,15 +44,15 @@ class NewDiaryScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: SizedBox(
-                  height: 60, // Increased card height
+                  height: 60,
                   child: Card(
-                    color: const Color.fromRGBO(228, 255, 221, 1), // Light yellow
+                    color: const Color.fromRGBO(228, 255, 221, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: ListTile(
                       leading: Image.asset(
-                        'assets/calendar.png', // Replace with your adventure image
+                        'assets/calendar.png',
                         width: 40,
                       ),
                     ),
@@ -65,9 +65,9 @@ class NewDiaryScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: SizedBox(
-                  height: 60, // Increased card height
+                  height: 60,
                   child: Card(
-                    color: const Color.fromRGBO(255, 233, 224, 1), // Light yellow
+                    color: const Color.fromRGBO(255, 233, 224, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -87,18 +87,17 @@ class NewDiaryScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
+              //Text
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Diary Entry Section with Lines
                     Stack(
                       children: [
-                        // Draw lines
                         Column(
                           children: List.generate(
-                            10, // Number of lines (based on the text rows)
+                            10,
                                 (index) => Padding(
                               padding: const EdgeInsets.only(bottom: 40.0),
                               child: Container(
@@ -136,7 +135,7 @@ class NewDiaryScreen extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(5, 41, 60, 1), // Teal color for the button
+                            backgroundColor: Color.fromRGBO(5, 41, 60, 1),
                             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -157,7 +156,7 @@ class NewDiaryScreen extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(5, 41, 60, 1), // Teal color for the button
+                            backgroundColor: Color.fromRGBO(5, 41, 60, 1),
                             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),

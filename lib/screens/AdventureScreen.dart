@@ -7,14 +7,14 @@ class AdventureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+      backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Match background color
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
         elevation: 0, // Remove shadow
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black), // Back arrow
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context); // Go back to the previous screen
+            Navigator.pop(context);
           },
         ),
       ),
@@ -22,7 +22,7 @@ class AdventureScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Section with Name and Profile
+            // Section with Name and Profile
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
@@ -42,7 +42,7 @@ class AdventureScreen extends StatelessWidget {
                   CircleAvatar(
                     radius: 40,
                     backgroundImage: AssetImage(
-                        'assets/profile.png'), // Replace with your profile image
+                        'assets/profile.png'),
                   ),
                 ],
               ),
@@ -64,7 +64,7 @@ class AdventureScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                textAlign: TextAlign.center, // Aligns text inside the Center widget
+                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 30),
@@ -154,7 +154,6 @@ class AdventureScreen extends StatelessWidget {
     );
   }
 
-  // Mock Data for Destination Cards
   static const _destinationImages = [
     'paris.jpg',
     'istanbul.jpg',

@@ -27,14 +27,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TourMate',
-      // theme: ThemeData(primarySwatch: Colors.blue),
-      // home: SplashScreen(),
       initialRoute: "/",
       routes: {
         "/": (context) => SplashScreen(),
@@ -50,9 +47,7 @@ class MyApp extends StatelessWidget {
          "/camera": (context) => const CameraScreen(),
         "/tourGuide": (context) => const TourGuideScreen(),
         "/tourDetails": (context) => const TourGuideDetailsScreen(),
-
       },
-
     );
   }
 }
