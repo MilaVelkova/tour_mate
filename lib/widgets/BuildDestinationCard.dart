@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tour_mate/providers/FavoritePlacesProvider.dart';
 
 class BuildDestinationCard extends StatelessWidget{
   final String imagePath;
@@ -8,6 +10,8 @@ class BuildDestinationCard extends StatelessWidget{
   BuildDestinationCard({required this.imagePath, required this.city, required this.country});
   @override
   Widget build(BuildContext context) {
+    final favoriteProvider = Provider.of<FavoritePlacesProvider>(context);
+    bool isFavorite = favoriteProvider.isFavorite(city);
     return Stack(
       children: [
         Card(
@@ -71,13 +75,12 @@ class BuildDestinationCard extends StatelessWidget{
                 ),
               ],
             ),
-            padding: const EdgeInsets.all(4),
-            child: const Icon(
-              Icons.favorite,
-              color: Colors.red,
-              size: 20,
-            ),
-          ),
+            padding: const EdgeInsets.all(8),
+         child: Icon(
+            isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? Colors.red : Colors.grey,
+         ),
+    ),
         ),
       ],
     );

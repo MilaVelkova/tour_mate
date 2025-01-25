@@ -7,13 +7,23 @@ class NewDiaryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Match background color
+        elevation: 0, // Remove shadow
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black), // Back arrow
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous screen
+          },
+        ),
+      ),
       body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // New Diary
               Padding(
-                padding: const EdgeInsets.only(top: 40, left: 40),
+                padding: const EdgeInsets.only(top: 0, left: 40),
                 child: Column(
                   children: [
                     Text(
@@ -28,7 +38,7 @@ class NewDiaryScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
 
               // Date
               Padding(

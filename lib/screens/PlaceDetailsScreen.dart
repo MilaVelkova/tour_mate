@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/ServiceItem.dart'; // Import the ServiceItem widget
+import '../main.dart';
+import '../providers/FavoritePlacesProvider.dart';
+import '../widgets/ServiceItem.dart';
 
 class PlaceDetailsScreen extends StatelessWidget {
   const PlaceDetailsScreen({super.key});
@@ -37,10 +40,20 @@ class PlaceDetailsScreen extends StatelessWidget {
                 Positioned(
                   right: 20,
                   bottom: 0,
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.white,
-                    onPressed: () {},
-                    child: const Icon(Icons.favorite_border, color: Colors.red),
+                  child: Consumer<FavoritePlacesProvider>(
+                    builder: (context, provider, _) {
+                      bool isFavorite = provider.isFavorite("Paris");
+                      return FloatingActionButton(
+                        backgroundColor: Colors.white,
+                        onPressed: () {
+                          provider.toggleFavorite("Paris");
+                        },
+                        child: Icon(
+                          isFavorite ? Icons.favorite : Icons.favorite_border,
+                          color: isFavorite ? Colors.red : Colors.grey,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

@@ -8,12 +8,22 @@ class TourGuideScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Match background color
+        elevation: 0, // Remove shadow
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black), // Back arrow
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous screen
+          },
+        ),
+      ),
       body: Container(
         color: const Color.fromRGBO(5, 191, 171, 1),
         child: SafeArea(
           child: SizedBox.expand(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -28,7 +38,7 @@ class TourGuideScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 50), // Gap after the title
+                  const SizedBox(height: 20), // Gap after the title
                   TourGuideCard(
                     name: "Peter Williams",
                     age: 26,

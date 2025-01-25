@@ -8,6 +8,16 @@ class AdventureScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Background color
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(5, 191, 171, 1), // Match background color
+        elevation: 0, // Remove shadow
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black), // Back arrow
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous screen
+          },
+        ),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,8 +64,7 @@ class AdventureScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                textAlign: TextAlign
-                    .center, // Aligns text inside the Center widget
+                textAlign: TextAlign.center, // Aligns text inside the Center widget
               ),
             ),
             const SizedBox(height: 30),
@@ -64,7 +73,7 @@ class AdventureScreen extends StatelessWidget {
               height: 50,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(50),
               ),
               child: Row(
                 children: [
@@ -86,31 +95,35 @@ class AdventureScreen extends StatelessWidget {
             const SizedBox(height: 30),
 
             // Recommended Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  "Recommended",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "Recommended",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-                Text(
-                  "See All",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                    decoration: TextDecoration.underline,
+                  Text(
+                    "See All",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
 
             // Recommended Cards
             GridView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -123,10 +136,9 @@ class AdventureScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(
-                        context,
-                        '/placeDetails'
-                    );
+                    if (_destinationCities[index] == 'Paris') {
+                      Navigator.pushNamed(context, '/placeDetails');
+                    }
                   },
                   child: BuildDestinationCard(
                     imagePath: 'assets/${_destinationImages[index]}',
@@ -134,7 +146,7 @@ class AdventureScreen extends StatelessWidget {
                     country: _destinationCountries[index],
                   ),
                 );
-              }
+              },
             ),
           ],
         ),
@@ -142,7 +154,7 @@ class AdventureScreen extends StatelessWidget {
     );
   }
 
-// Mock Data for Destination Cards
+  // Mock Data for Destination Cards
   static const _destinationImages = [
     'paris.jpg',
     'istanbul.jpg',
