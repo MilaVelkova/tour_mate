@@ -1,8 +1,46 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:tour_mate/widgets/BuildModelItem.dart';
+import 'dart:io';
 
-class CameraScreen extends StatelessWidget {
-  const CameraScreen({super.key});
+class CameraScreen extends StatefulWidget {
+  @override
+  _CameraScreenState createState() => _CameraScreenState();
+}
+
+class _CameraScreenState extends State<CameraScreen> {
+  late CameraController _controller;
+  late List<CameraDescription> _cameras;
+  bool _isInitialized = false;
+  XFile? _capturedImage;
+
+  @override
+  void initState() {
+    super.initState();
+    _initCamera();
+  }
+
+  Future<void> _initCamera() async {
+    _cameras = await availableCameras();
+    _controller = CameraController(_cameras.last, ResolutionPreset.high);
+    await _controller.initialize();
+    setState(() => _isInitialized = true);
+  }
+
+  Future<void> _captureImage() async {
+    if (!_controller.value.isInitialized) return;
+    try {
+      final image = await _controller.takePicture();
+      setState(() => _capturedImage = image);
+    } catch (e) {
+      print('Error capturing image: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,82 +48,52 @@ class CameraScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Column(
         children: [
-          // Camera Preview
           Expanded(
-            child: Stack(
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/sea.jpg'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.8),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            child: _isInitialized
+                ? CameraPreview(_controller)
+                : const Center(child: CircularProgressIndicator()),
           ),
-          // Camera Controls
           Container(
-            color: const Color.fromRGBO(7, 12, 27, 1),
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.all(16),
+            color: Colors.black,
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    BuildModelItem(label: "Document", isSelected: false),
-                    BuildModelItem(label: "Video", isSelected: false),
-                    BuildModelItem(label: "Photo", isSelected: true),
-                    BuildModelItem(label: "Portrait", isSelected: false),
-                    BuildModelItem(label: "Night", isSelected: false),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                // Capture and Controls Row
-                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: const AssetImage('assets/camera.png'), // Thumbnail Image
-                    ),
-                    // Capture Button
-                    Container(
-                      width: 70,
-                      height: 70,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
+                    Text("Motion", style: TextStyle(color: Colors.white54)),
+                    Text("Portrait", style: TextStyle(color: Colors.white54)),
+                    Text("Camera", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                    Text("Video", style: TextStyle(color: Colors.white54)),
+                    Text("Cinematic", style: TextStyle(color: Colors.white54)),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _capturedImage != null
+                        ? ClipOval(
+                      child: Image.file(
+                        File(_capturedImage!.path),
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                        : const SizedBox(width: 50, height: 50),
+                    GestureDetector(
+                      onTap: _captureImage,
+                      child: Container(
+                        width: 70,
+                        height: 70,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 4),
+                        ),
                       ),
                     ),
-                    // Switch Camera Button
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black,
-                      ),
-                      child: const Icon(
-                        Icons.cameraswitch,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
+                    Icon(Icons.cameraswitch, color: Colors.white, size: 40),
                   ],
                 ),
               ],

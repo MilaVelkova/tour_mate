@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         "/diaryDetails": (context) => const DiaryDetailsScreen(),
         "/newDiary": (context) => const NewDiaryScreen(),
         "/selectPhoto": (context) => const SelectPhotoScreen(),
-         "/camera": (context) => const CameraScreen(),
+         "/camera": (context) =>  CameraScreen(),
         "/tourGuide": (context) => const TourGuideScreen(),
         "/tourDetails": (context) => const TourGuideDetailsScreen(),
       },

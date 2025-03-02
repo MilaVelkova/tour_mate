@@ -1,0 +1,2 @@
+C:/Users/Mila/StudioProjects/tour_mate/android/app/.cxx/Debug/321t2s2h/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Mila/StudioProjects/tour_mate/android/app/.cxx/Debug/321t2s2h/armeabi-v7a/CMakeFiles/rebuild_cache.dir
