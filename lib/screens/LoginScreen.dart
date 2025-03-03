@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -8,6 +10,61 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  String? _errorMessage;
+
+  bool _isValidEmail(String email) {
+    final emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+    return emailRegExp.hasMatch(email);
+  }
+
+  void _login() async {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    setState(() {
+      _errorMessage = null;
+    });
+
+    if (email.isEmpty || password.isEmpty) {
+      setState(() {
+        _errorMessage = "Email and password cannot be empty";
+      });
+      return;
+    }
+
+    if (!_isValidEmail(email)) {
+      setState(() {
+        _errorMessage = "Please enter a valid email address";
+      });
+      return;
+    }
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      if (userCredential.user != null) {
+        print("Login successful! User ID: ${userCredential.user?.uid}");
+        Navigator.pushNamed(context, '/home');
+      } else {
+        print("Login failed. User is null.");
+      }
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        if (e.code == 'user-not-found') {
+          _errorMessage = 'No user found for that email.';
+        } else if (e.code == 'wrong-password') {
+          _errorMessage = 'Incorrect password.';
+        } else {
+          _errorMessage = 'Login error: ${e.message}';
+        }
+      });
+      Fluttertoast.showToast(msg: _errorMessage ?? 'Login failed');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +113,8 @@ class _LoginScreen extends State<LoginScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   children: [
-                    // Email TextField
                     TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         labelText: "Email",
                         border: OutlineInputBorder(
@@ -66,12 +123,13 @@ class _LoginScreen extends State<LoginScreen> {
                         ),
                         filled: true,
                         fillColor: Colors.white,
+                        errorText: _errorMessage != null ? _errorMessage : null,
                       ),
                     ),
                     SizedBox(height: 20),
 
-                    // Password TextField
                     TextField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: "Password",
@@ -81,6 +139,7 @@ class _LoginScreen extends State<LoginScreen> {
                         ),
                         filled: true,
                         fillColor: Colors.white,
+                        errorText: _errorMessage != null ? _errorMessage : null,
                       ),
                     ),
                   ],
@@ -93,14 +152,8 @@ class _LoginScreen extends State<LoginScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   children: [
-                    // Sign In Button
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context,
-                            '/home'
-                        );
-                      },
+                      onPressed: _login,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(31, 65, 187, 1),
                         minimumSize: Size(double.infinity, 50),
@@ -109,23 +162,19 @@ class _LoginScreen extends State<LoginScreen> {
                         ),
                       ),
                       child: Text(
-                        "Sign in",
+                        "Log in",
                         style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
+                          fontSize: 18,
+                          color: Colors.white,
                         ),
                       ),
                     ),
                     SizedBox(height: 20),
 
-                    // Create Account Button
                     OutlinedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context,
-                              '/create'
-                          );
-                        },
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/create');
+                      },
                       style: OutlinedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(255, 255, 255, 1),
                         side: BorderSide(color: Colors.black, width: 2),

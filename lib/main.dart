@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tour_mate/firebase_options.dart';
 import 'package:tour_mate/providers/FavoritePlacesProvider.dart';
 import 'package:tour_mate/screens/AdventureScreen.dart';
 import 'package:tour_mate/screens/CameraScreen.dart';
@@ -16,7 +18,9 @@ import 'package:tour_mate/screens/TourGuideDetailsScreen.dart';
 import 'package:tour_mate/screens/TourGuideScreen.dart';
 
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     ChangeNotifierProvider(
       create: (context) => FavoritePlacesProvider(),
