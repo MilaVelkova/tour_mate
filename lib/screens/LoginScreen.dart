@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/UserProvider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,7 +22,7 @@ class _LoginScreen extends State<LoginScreen> {
     return emailRegExp.hasMatch(email);
   }
 
-  void _login() async {
+  Future<void> _login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
@@ -46,10 +49,11 @@ class _LoginScreen extends State<LoginScreen> {
           .signInWithEmailAndPassword(email: email, password: password);
 
       if (userCredential.user != null) {
-        print("Login successful! User ID: ${userCredential.user?.uid}");
+        // Load user data after login
+        await _loadUserData();
+
+        // Navigate to home screen
         Navigator.pushNamed(context, '/home');
-      } else {
-        print("Login failed. User is null.");
       }
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -63,6 +67,15 @@ class _LoginScreen extends State<LoginScreen> {
       });
       Fluttertoast.showToast(msg: _errorMessage ?? 'Login failed');
     }
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    String firstName = prefs.getString('firstName') ?? '';
+    String lastName = prefs.getString('lastName') ?? '';
+
+    Provider.of<UserProvider>(context, listen: false)
+        .saveUserData(firstName, lastName);
   }
 
   @override
@@ -119,15 +132,13 @@ class _LoginScreen extends State<LoginScreen> {
                         labelText: "Email",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.blue, width: 2),
                         ),
                         filled: true,
                         fillColor: Colors.white,
-                        errorText: _errorMessage != null ? _errorMessage : null,
+                        errorText: _errorMessage,
                       ),
                     ),
                     SizedBox(height: 20),
-
                     TextField(
                       controller: passwordController,
                       obscureText: true,
@@ -135,11 +146,10 @@ class _LoginScreen extends State<LoginScreen> {
                         labelText: "Password",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.blue, width: 2),
                         ),
                         filled: true,
                         fillColor: Colors.white,
-                        errorText: _errorMessage != null ? _errorMessage : null,
+                        errorText: _errorMessage,
                       ),
                     ),
                   ],
@@ -170,7 +180,6 @@ class _LoginScreen extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
-
                     OutlinedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/create');

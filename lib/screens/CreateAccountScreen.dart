@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/UserProvider.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -14,6 +17,8 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
   String? _errorMessage;
 
   bool _isValidEmail(String email) {
@@ -34,6 +39,13 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
         password: _passwordController.text.trim(),
       );
 
+      // Save name using Provider
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      userProvider.saveUserData(
+        _firstNameController.text,
+        _lastNameController.text,
+      );
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -41,11 +53,10 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           backgroundColor: Colors.green,
-          duration: Duration(seconds: 2),
         ),
       );
 
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(Duration(seconds: 1), () {
         Navigator.pushReplacementNamed(context, '/login');
       });
 
@@ -59,6 +70,7 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
       });
     }
   }
+
   Widget _buildTextField({
     required TextEditingController controller,
     required String label,
@@ -123,7 +135,7 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Color.fromRGBO(5, 41, 60, 1),
                       ),
                     ),
                     SizedBox(height: 8),
@@ -132,7 +144,7 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white70,
+                        color: Colors.black,
                       ),
                     ),
                   ],
@@ -145,6 +157,22 @@ class _CreateAccountScreen extends State<CreateAccountScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
+                      _buildTextField(
+                        controller: _firstNameController,
+                        label: "First Name",
+                        validator: (value) {
+                          if (value!.isEmpty) return 'Enter your first name';
+                          return null;
+                        },
+                      ),
+                      _buildTextField(
+                        controller: _lastNameController,
+                        label: "Last Name",
+                        validator: (value) {
+                          if (value!.isEmpty) return 'Enter your last name';
+                          return null;
+                        },
+                      ),
                       _buildTextField(
                         controller: _emailController,
                         label: "Email",

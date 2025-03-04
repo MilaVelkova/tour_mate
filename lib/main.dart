@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tour_mate/firebase_options.dart';
 import 'package:tour_mate/providers/FavoritePlacesProvider.dart';
+import 'package:tour_mate/providers/UserProvider.dart';
 import 'package:tour_mate/screens/AdventureScreen.dart';
 import 'package:tour_mate/screens/CameraScreen.dart';
 import 'package:tour_mate/screens/CreateAccountScreen.dart';
@@ -22,8 +22,11 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => FavoritePlacesProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => FavoritePlacesProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => SplashScreen(),
-         "/login": (context) => const LoginScreen(),
+        "/login": (context) => const LoginScreen(),
         "/create": (context) => const CreateAccountScreen(),
         "/home": (context) => const HomeScreen(),
         "/adventure": (context) => const AdventureScreen(),
@@ -48,7 +51,7 @@ class MyApp extends StatelessWidget {
         "/diaryDetails": (context) => const DiaryDetailsScreen(),
         "/newDiary": (context) => const NewDiaryScreen(),
         "/selectPhoto": (context) => const SelectPhotoScreen(),
-         "/camera": (context) =>  CameraScreen(),
+        "/camera": (context) =>  CameraScreen(),
         "/tourGuide": (context) => const TourGuideScreen(),
         "/tourDetails": (context) => const TourGuideDetailsScreen(),
       },
