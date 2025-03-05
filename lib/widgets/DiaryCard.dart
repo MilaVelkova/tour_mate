@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class DiaryCard extends StatelessWidget {
   final String title;
-  final String imagePath;
+  final String? imagePath;
   final Color backgroundColor;
   final VoidCallback onTap;
 
   const DiaryCard({
     Key? key,
     required this.title,
-    required this.imagePath,
+    this.imagePath, // Now optional
     required this.backgroundColor,
     required this.onTap,
   }) : super(key: key);
@@ -29,18 +29,19 @@ class DiaryCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    bottomLeft: Radius.circular(15),
+                if (imagePath != null) // Only show if image exists
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      bottomLeft: Radius.circular(15),
+                    ),
+                    child: Image.asset(
+                      imagePath!,
+                      width: 80,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  child: Image.asset(
-                    imagePath,
-                    width: 80,
-                    height: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
                 Expanded(
                   child: Center(
                     child: Text(
