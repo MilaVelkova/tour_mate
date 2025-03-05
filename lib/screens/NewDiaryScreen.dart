@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:tour_mate/providers/UserProvider.dart';
+
 
 class NewDiaryScreen extends StatefulWidget {
   @override
@@ -7,9 +11,28 @@ class NewDiaryScreen extends StatefulWidget {
 }
 
 class _NewDiaryScreenState extends State<NewDiaryScreen> {
+  DatabaseReference ref = FirebaseDatabase.instanceFor(
+    app: Firebase.app(),
+    databaseURL: "https://tourmate-db17f-default-rtdb.europe-west1.firebasedatabase.app/",
+  ).ref("diaries");
   DateTime? selectedDate;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
+
+  var firstName = UserProvider().firstName;
+  var lastName = UserProvider().lastName;
+
+  void uploadDestinations() {
+      ref.push().set({
+        "title": titleController.text,
+        "text":  contentController.text,
+        "creator": {
+          "firstName": firstName,
+          "lastName": lastName,
+        }
+      });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +156,7 @@ class _NewDiaryScreenState extends State<NewDiaryScreen> {
                   ElevatedButton(
                     onPressed: () {
                       if (titleController.text.isNotEmpty) {
+                        uploadDestinations();
                         Navigator.pop(context, {
                           'title': titleController.text,
                           'date': selectedDate?.toIso8601String() ?? '',

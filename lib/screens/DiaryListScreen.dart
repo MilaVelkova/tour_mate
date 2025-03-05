@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tour_mate/providers/UserProvider.dart';
 import '../widgets/DiaryCard.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 
 class DiaryListScreen extends StatefulWidget {
   @override
@@ -7,7 +12,7 @@ class DiaryListScreen extends StatefulWidget {
 }
 
 class _DiaryListScreenState extends State<DiaryListScreen> {
-  List<Map<String, dynamic>> diaries = [
+  List<Map<String, dynamic>> diariesInit = [
     {
       'title': 'PARIS, 2023',
       'imagePath': 'assets/paris.jpg',
@@ -29,19 +34,58 @@ class _DiaryListScreenState extends State<DiaryListScreen> {
       'backgroundColor': const Color.fromRGBO(255, 126, 126, 1),
     },
   ];
+  DatabaseReference ref = FirebaseDatabase.instanceFor(
+    app: Firebase.app(),
+    databaseURL: "https://tourmate-db17f-default-rtdb.europe-west1.firebasedatabase.app/",
+  ).ref("diaries");
+  var firstName = UserProvider().firstName;
+  var lastName = UserProvider().lastName;
+
+  Future<List<Map<String, String>>> fetchDestinations() async {
+    DatabaseEvent event = await ref.once();
+    if (event.snapshot.value == null) return [];
+
+    var data = event.snapshot.value;
+
+    List<Map<String, String>> diaries = [];
+
+    if (data is List) {
+      for (var item in data) {
+        if (item is Map) {
+          diaries.add({
+            "title": item["title"] ?? "",
+            "text": item["text"] ?? "",
+          });
+        }
+      }
+    } else if (data is Map) {
+      data.forEach((key, value) {
+        if (value is Map) {
+          diaries.add({
+            "title": value["title"] ?? "",
+            "text": value["text"] ?? "",
+          });
+        }
+      });
+    }
+    return diaries;
+  }
 
   // Add a new diary to the list
-  void _addDiary(Map<String, dynamic> diaryData) {
-    setState(() {
-      diaries.add({
-        "title": diaryData["title"] ?? "Untitled",
-        "backgroundColor": const Color.fromRGBO(255, 153, 204, 1), // Light yellow
-      });
-    });
-  }
+  // void _addDiary(Map<String, dynamic> diaryData) {
+  //   setState(() {
+  //     diaries.add({
+  //       "title": diaryData["title"] ?? "Untitled",
+  //       "backgroundColor": const Color.fromRGBO(255, 153, 204, 1), // Light yellow
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
       appBar: AppBar(
@@ -65,7 +109,7 @@ class _DiaryListScreenState extends State<DiaryListScreen> {
                 onTap: () async {
                   final newDiary = await Navigator.pushNamed(context, '/newDiary');
                   if (newDiary != null && newDiary is Map<String, dynamic>) {
-                    _addDiary(newDiary);
+                    // _addDiary(newDiary);
                   }
                 },
                 child: SizedBox(
@@ -134,17 +178,37 @@ class _DiaryListScreenState extends State<DiaryListScreen> {
 
             // Diary List
             Expanded(
-              child: ListView.builder(
-                itemCount: diaries.length,
-                itemBuilder: (context, index) {
-                  return DiaryCard(
+              child: FutureBuilder(
+                future: fetchDestinations(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasError) {
+                    return Center(child: Text("Error loading data"));
+                  }
+                  List<Map<String, String>> diaries2 = snapshot.data ?? [];
+
+                  List<Map<String, dynamic>> diaries = [
+                    ...diariesInit,
+                    ...diaries2,
+                  ];
+
+                  return ListView.builder(
+                    itemCount: diaries.length,
+                    itemBuilder: (context, index) {
+                    return DiaryCard(
                     title: diaries[index]["title"] ?? "Untitled",
                     imagePath: diaries[index].containsKey("imagePath")
-                        ? diaries[index]["imagePath"]
+                    ? diaries[index]["imagePath"]
                         : null,
                     backgroundColor: diaries[index]["backgroundColor"] ?? Colors.white,
                     onTap: () {
-                      Navigator.pushNamed(context, '/diaryDetails');
+                      Navigator.pushNamed(context, '/diaryDetails', arguments: {
+                        'title': diaries[index]["title"],
+                        'text': diaries[index]["text"]
+                      });
+                    });
                     },
                   );
                 },

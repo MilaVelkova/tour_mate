@@ -5,6 +5,13 @@ class DiaryDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> arguments =
+    ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+
+    // Access the passed data
+    final String title = arguments['title'] ?? 'No Title';
+    final String content = arguments['text'] ?? 'No Content';
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(5, 191, 171, 1),
       appBar: AppBar(
@@ -27,7 +34,7 @@ class DiaryDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "PARIS, 2023",
+                    title,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: "Allura",
@@ -118,11 +125,8 @@ class DiaryDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     // Diary Text
-                    const Text(
-                      "Dear diary, today I was on the Eiffel Tower. "
-                          "It was an amazing adventure. I was on the top of\n the tower with "
-                          "a lift. The view \nwas unforgettable. There are some\n pictures I "
-                          "took.",
+                    Text(
+                      content,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,
